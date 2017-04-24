@@ -1,0 +1,2 @@
+# SGTCGNPN
+Natural products code
