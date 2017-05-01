@@ -1,7 +1,6 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "HiMommy12";
 $dbname = "GNPNDB";
 
 // Create connection
