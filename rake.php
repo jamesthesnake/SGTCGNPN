@@ -24,48 +24,40 @@ if ($result->num_rows >0) {
 	  print_r($row);
 	  echo $row['POS']."<br>";
           if($row['POS']=='1f'){
-		echo "Hello"."<br>";
 		$full[$i]['Promoter']=60;
 		$full[$i]['Terminator']=7;
 	  }
 	  else if($row['POS']=='1'){
-			echo "Hellod"."<br>";
 			
                 $full[$i]['Promoter']=26;
 		$full[$i]['Terminator']=15;
           }
           else if($row['POS']=='2'){
-			echo "Hellos"."<br>";
 			
                 $full[$i]['Promoter']=55;
                 $full[$i]['Terminator']=5;
           }
           else if($row['POS']=='3'){
-			echo "Hfello"."<br>";
 			
                 $full[$i]['Promoter']=17;
                 $full[$i]['Terminator']=3;
           }
 	   else if($row['POS']=='4'){
-			echo "Kello"."<br>";
 			
                 $full[$i]['Promoter']=26;
                 $full[$i]['Terminator']=15;
           }
           else if($row['POS']=='5'){
-			echo "Jello"."<br>";
 			
                 $full[$i]['Promoter']=59;
                 $full[$i]['Terminator']=1;
           }
           else if($row['POS']=='6'){
-			echo "Trdello"."<br>";
 			
                 $full[$i]['Promoter']=57;
                 $full[$i]['Terminator']=2;
           }
           else if($row['POS']=='7'){
-			echo "bello"."<br>";
 			
                 $full[$i]['Promoter']=26;
                 $full[$i]['Terminator']=7;
