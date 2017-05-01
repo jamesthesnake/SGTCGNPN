@@ -1,3 +1,5 @@
+//Creates the Cassette File with Promoters and Terminators based on the version of plasmid construction 
+
 <?php
 $servername = "localhost";
 $username = "root";
