@@ -1,3 +1,5 @@
+
+//Used to concate sequences of genes that were split apart due commerical ordering issues
 <?php
 $servername = "localhost";
 $username = "root";
