@@ -1,7 +1,9 @@
+//Used to create a fasta file from GeneClusters
+
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "HiMommy12";
+$password = "***";
 $dbname = "GNPNDB";
 
 // Create connection
