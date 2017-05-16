@@ -1,7 +1,7 @@
 
 <?php
 
-$file = 'new.csv';
+$file = 'newFile.csv';
 
 if (file_exists($file)) {
     header('Content-Description: File Transfer');
