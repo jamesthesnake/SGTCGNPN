@@ -25,7 +25,7 @@ TRIM_SIZE = 1800  # maximum allowable length of a gene for ordering from Twist
 OVERHANG_LEN = 60
 #OPERON_SIZE = 6000
 OPERON_SIZE = 11000  # increaseo peron size when you want to specify the order of the genetic parts
-db = pymysql.connect(host='localhost',user='root',passwd='HiMommy12')
+db = pymysql.connect(host='localhost',user='root',passwd='****')
 cursor = db.cursor()
 query = ("SHOW DATABASES")
 cursor.execute(query)
