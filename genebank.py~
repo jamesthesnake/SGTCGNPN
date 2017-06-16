@@ -100,7 +100,7 @@ while names:
                 if row[6]==20:
                         print row
                         finalprint.append(row)
-                queriesBackbone=("SELECT  name,Sequence from GNPNDB.Backbone where backboneID in (SELECT BackboneID from GNPNDB.Plasmids Where PlasmidID =(SELECT DISTINCT(PlasmidID) From GNPNDB.Cassette WHERE PlasmidID="+str(row[4])+"))")
+                queriesBackbone=("SELECT  name,Sequence from GNPNDB.backbone where backboneID in (SELECT BackboneID from GNPNDB.Plasmids Where PlasmidID =(SELECT DISTINCT(PlasmidID) From GNPNDB.Cassette WHERE PlasmidID="+str(row[4])+"))")
        
                         
                 queriesResist=("SELECT  Name,Sequence from GNPNDB.ResistanceGene where ResistID in (SELECT ResistanceID from GNPNDB.Plasmids Where PlasmidID =(SELECT DISTINCT(PlasmidID) From GNPNDB.Cassette WHERE PlasmidID="+str(row[4])+"))")

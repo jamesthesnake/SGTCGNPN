@@ -32,13 +32,10 @@ start=db.cursor()
 start.execute(querySetup)
 names=start.fetchone()
 nameList=""
-allNames=[]
-finalprint=[]
 while names:
-        allNames.append(names)
         nameList=names
         print nameList[0]
-        queryStart = (" SELECT Sequence FROM GNPNDB.Plasmids Where GeneClusterID = (Select GeneClusterID from GNPNDB.EngineeredGeneClusters Where ClusterName= '"+ nameList[0]+ "' and EngineeredGeneClusters.Version='2.2' )")
+        queryStart = (" SELECT Sequence FROM GNPNDB.NewPlasmidID Where GeneClusterID = (Select GeneClusterID from GNPNDB.EngineeredGeneClusters Where ClusterName= '"+ nameList[0]+ "' and EngineeredGeneClusters.Version='2.2' )")
         weird=db.cursor()
         weird.execute(queryStart)
         sequenceFull=""
@@ -75,7 +72,7 @@ while names:
         if row!=None:
                 print str(row[4])
                 print "choclate"
-                queriesName=("Select CommonName From GNPNDB.Plasmids Where PlasmidID='"+str(row[4])+"'")
+                queriesName=("Select CommonName From GNPNDB.NewPlasmidID Where PlasmidID='"+str(row[4])+"'")
                 nameCursors=db.cursor()
                 nameCursors.execute(queriesName)
                 nameRow=nameCursors.fetchone()
@@ -96,14 +93,11 @@ while names:
                 
                 queriesTerm = (" SELECT CommonName,Sequence FROM GNPNDB.Terminator where TerminatorID ="+str(row[3]))
                 queriesProm = (" SELECT CommonName,Sequence FROM GNPNDB.Promoter where PromoterID ="+str(row[1]))
-                queriesGene = (" SELECT GeneName,ONS FROM GNPNDB.Gene where GeneID ="+str(row[2]))
-                if row[6]==20:
-                        print row
-                        finalprint.append(row)
-                queriesBackbone=("SELECT  name,Sequence from GNPNDB.Backbone where backboneID in (SELECT BackboneID from GNPNDB.Plasmids Where PlasmidID =(SELECT DISTINCT(PlasmidID) From GNPNDB.Cassette WHERE PlasmidID="+str(row[4])+"))")
+                queriesGene = (" SELECT CDS,ONS FROM GNPNDB.Gene where GeneID ="+str(row[2]))
+                queriesBackbone=("SELECT  name,Sequence from GNPNDB.backbone where backboneID in (SELECT BackboneID from GNPNDB.NewPlasmidID Where PlasmidID =(SELECT DISTINCT(PlasmidID) From GNPNDB.Cassette WHERE PlasmidID="+str(row[4])+"))")
        
                         
-                queriesResist=("SELECT  Name,Sequence from GNPNDB.ResistanceGene where ResistID in (SELECT ResistanceID from GNPNDB.Plasmids Where PlasmidID =(SELECT DISTINCT(PlasmidID) From GNPNDB.Cassette WHERE PlasmidID="+str(row[4])+"))")
+                queriesResist=("SELECT  Name,Sequence from GNPNDB.Resist where ResistID in (SELECT ResistanceID from GNPNDB.NewPlasmidID Where PlasmidID =(SELECT DISTINCT(PlasmidID) From GNPNDB.Cassette WHERE PlasmidID="+str(row[4])+"))")
                 cursors.execute(queriesProm)
                 cursorsFour= db.cursor()
                 cursorsFour.execute(queriesBackbone)
@@ -113,7 +107,7 @@ while names:
                                                  
                 rows = cursors.fetchone()                
                 while rows:
-                        rowsLen=len(str(rows[1]))
+                        rowsLen=len(str(rows[1])) 
                         feature = SeqFeature(FeatureLocation(start=spot, end= spot+rowsLen), type='Promoter', qualifiers={'locus_tag': rows[0]})
 
                         record.features.append(feature)
@@ -121,8 +115,8 @@ while names:
                         fullSeqs=fullSeqs+str(rows[1])       
                         rows = cursors.fetchone()
 
-                cursorsTwo=db.cursor()        
-                cursorsTwo.execute(queriesGene)
+                        cursorsTwo=db.cursor()        
+                        cursorsTwo.execute(queriesGene)
                
                 rowsTwo = cursorsTwo.fetchone()
                 while rowsTwo:
@@ -132,7 +126,6 @@ while names:
                         fullSeqs=fullSeqs+str(rowsTwo[1])
                         record.features.append(featurer)
                         rowsTwo = cursorsTwo.fetchone()
-                        
                 cursorsThree=db.cursor()
                 cursorsThree.execute(queriesTerm)
                 rowsThree=cursorsThree.fetchone()
@@ -161,6 +154,7 @@ while names:
                 oldNumber=row[4]
                 oldName=nameRow
                 row=cursor.fetchone()
+                print nameRow
                 #if row!=None and d>=1:
                  #       queriesName=("Select CommonName From GNPNDB.NewPlasmidID Where PlasmidID='"+str(row[4])+"'")
                   #      
@@ -231,7 +225,7 @@ while names:
                         recordTwo.features=record.features
                         SeqIO.write(recordTwo, output_file, 'genbank')
                 if row!=None:
-                        queriesName=("Select CommonName From GNPNDB.Plasmids Where PlasmidID='"+str(row[4])+"'")
+                        queriesName=("Select CommonName From GNPNDB.NewPlasmidID Where PlasmidID='"+str(row[4])+"'")
                         nameCursorss=db.cursor()
                         nameCursorss.execute(queriesName)
                         nameRow=nameCursorss.fetchone()
@@ -247,7 +241,7 @@ recordTwo= SeqRecord(trueFullSeq,id='123456789',  # random accession number
 name="KU33",description='An example GenBank file generated by GPNPN LADY')
 print "\n"
 # Use this function to chop up sequences and add name to each chopped fragment
-print finalprint
+
 seq=Seq("AGGGTTTAATTTAACCCAAATTTAAGGG",generic_dna)
 sequence_object = Seq(str(seq), IUPAC.unambiguous_dna)
 recordThree=record  

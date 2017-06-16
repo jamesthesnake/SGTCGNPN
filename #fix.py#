@@ -1,0 +1,20 @@
+from Bio.SeqRecord import SeqRecord
+from Bio.Alphabet import IUPAC, generic_dna
+from Bio.SeqFeature import SeqFeature, FeatureLocation
+from Bio import Restriction
+from Bio.Restriction import *
+from Bio.Seq import Seq
+from Bio.Alphabet import generic_dna, generic_protein
+from Bio.SeqUtils import MeltingTemp as mt
+from subprocess import call
+from StringIO import StringIO
+import os
+import sys
+import copy
+import time
+import csv
+import pymysql.cursors
+n=7
+db = pymysql.connect(host='localhost',user='root',passwd='HiMommy12')
+cursor = db.cursor()
+query="SELECT 

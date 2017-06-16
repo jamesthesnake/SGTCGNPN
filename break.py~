@@ -1,0 +1,36 @@
+
+from Bio.SeqRecord import SeqRecord
+from Bio.Alphabet import IUPAC, generic_dna
+from Bio.SeqFeature import SeqFeature, FeatureLocation
+from Bio import Restriction
+from Bio.Restriction import *
+from Bio.Seq import Seq
+from Bio.Alphabet import generic_dna, generic_protein
+from Bio.SeqUtils import MeltingTemp as mt
+from subprocess import call
+from StringIO import StringIO
+import os
+import sys
+import copy
+import time
+import csv
+import StringIO
+import pymysql.cursors
+n=7
+db = pymysql.connect(host='localhost',user='root',passwd='HiMommy12')
+cursor = db.cursor()
+best=db.cursor()
+with open('betterplace.csv', 'rb') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=',')
+        spamreader=list(spamreader)
+        for row in spamreader:
+                print row
+             
+                querynew="UPDATE GNPNDB.Gene SET ONS= '"+str(row[4])+"'  WHERE CDS='"+str(row[3])+"'"
+                print querynew
+                best=db.cursor()
+                best.execute(querynew)
+                
+                
+
+  

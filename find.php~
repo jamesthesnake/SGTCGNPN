@@ -93,7 +93,9 @@ $resulters =$conn ->query($spaces);
 if ($resulters->num_rows > 0) {
     // output data of each row
                 while($rows= $resulters->fetch_assoc()) {
-		    $term[]=$rows['Terminator'];						                                    }
+		                            $term[]=$rows['Terminator'];
+
+						                                    }
 										    
 
 									}

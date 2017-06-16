@@ -2,7 +2,7 @@
  <body>
    Input Name Like "KU32" to get that Cluster,
    and input VTwoTwo for Version 2.2 promoters and Terminators
-<form action="finds.php" method="post">
+<form action="find.php" method="post">
   ClusterName: <input type="text" name="Cluster"><br>
   VersionName:<input type ="text" name ="Version" value="VTwoTwo"><br>
 <input type="submit">
